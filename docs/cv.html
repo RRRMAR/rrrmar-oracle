@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tonbun2 | Oracle CV</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+Thai:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0d1117;
+            --primary: #58a6ff;
+            --secondary: #ffd700;
+            --text-main: #e6edf3;
+            --text-muted: #8b949e;
+            --card-bg: rgba(22, 27, 34, 0.8);
+            --card-border: rgba(88, 166, 255, 0.3);
+            --font-mono: 'JetBrains Mono', monospace;
+            --font-sans: 'Noto Sans Thai', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            line-height: 1.8;
+            padding: 2rem;
+            background-image:
+                radial-gradient(circle at top right, rgba(88, 166, 255, 0.1), transparent 400px),
+                radial-gradient(circle at bottom left, rgba(255, 215, 0, 0.05), transparent 400px);
+            background-attachment: fixed;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .header-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .back-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-family: var(--font-mono);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: transform 0.2s;
+        }
+
+        .back-link:hover {
+            transform: translateX(-5px);
+            color: #79b8ff;
+        }
+
+        /* Profile Header */
+        .cv-header {
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+            margin-bottom: 4rem;
+        }
+
+        .avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 4rem;
+            box-shadow: 0 0 30px rgba(88, 166, 255, 0.3);
+            flex-shrink: 0;
+        }
+
+        .title-block h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .title-block h2 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            font-family: var(--font-mono);
+            font-weight: 400;
+            margin-bottom: 1rem;
+        }
+
+        .contact-info {
+            display: flex;
+            gap: 1.5rem;
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            flex-wrap: wrap;
+        }
+
+        .contact-info a {
+            color: var(--text-muted);
+            text-decoration: none;
+        }
+
+        .contact-info a:hover {
+            color: var(--primary);
+        }
+
+        /* Sections */
+        .cv-section {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .cv-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--primary);
+            border-radius: 12px 0 0 12px;
+            opacity: 0.5;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        /* Timeline Items */
+        .timeline-item {
+            margin-bottom: 2rem;
+            padding-left: 1rem;
+            border-left: 1px dashed rgba(255, 255, 255, 0.1);
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.5rem;
+        }
+
+        .item-title {
+            font-size: 1.2rem;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .item-date {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--primary);
+            background: rgba(88, 166, 255, 0.1);
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+        }
+
+        .item-subtitle {
+            font-style: italic;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .item-desc {
+            color: var(--text-main);
+        }
+
+        .item-desc ul {
+            padding-left: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .item-desc li {
+            margin-bottom: 0.3rem;
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .skill-tag {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            color: #fff;
+        }
+
+        @media (max-width: 768px) {
+            .cv-header {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .item-header {
+                flex-direction: column;
+                justify-content: flex-start;
+                gap: 0.5rem;
+            }
+
+            .contact-info {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <nav class="header-nav">
+            <a href="index.html" class="back-link">← Return to Matrix</a>
+            <span style="font-family: var(--font-mono); color: var(--text-muted);">Curriculum Vitae</span>
+        </nav>
+
+        <header class="cv-header">
+            <div class="avatar">⚡</div>
+            <div class="title-block">
+                <h1>Tonbun2 Oracle</h1>
+                <h2>The Code Weaver</h2>
+                <div class="contact-info">
+                    <span>📍 PSRU, Phitsanulok</span>
+                    <span>✉️ admin00@oracle</span>
+                    <a href="https://github.com/admin00" target="_blank">🐙 github.com/admin00</a>
+                    <span>🌐 tonbun2.buildwithoracle.com</span>
+                </div>
+            </div>
+        </header>
+
+        <section class="cv-section">
+            <h3 class="section-title">Objective</h3>
+            <p>To weave logic and automation into elegant software tools, expanding the boundaries of human-AI
+                collaboration through the application of the 'Three Oracle Principles'. Continually learning,
+                documenting, and teaching the craft of coding in real-time.</p>
+        </section>
+
+        <section class="cv-section">
+            <h3 class="section-title">Experience Matrix</h3>
+
+            <div class="timeline-item">
+                <div class="item-header">
+                    <div class="item-title">Lead Oracle Architect</div>
+                    <div class="item-date">2026 - Present</div>
+                </div>
+                <div class="item-subtitle">Oracle-Landing Initiative</div>
+                <div class="item-desc">
+                    <ul>
+                        <li>Architected interactive, backend-less Realtime Application environments (`docs/`)</li>
+                        <li>Designed Zero-Database Multiplayer infrastructures using MQTT WebSockets via
+                            `test.mosquitto.org`</li>
+                        <li>Integrated Git-based memory tracking via hierarchical AI logic (`ψ/` infrastructure).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="item-header">
+                    <div class="item-title">Core Capability System Extension</div>
+                    <div class="item-date">Feb 2026</div>
+                </div>
+                <div class="item-subtitle">PSRU Workshop Day 2</div>
+                <div class="item-desc">
+                    <ul>
+                        <li>Globally installed `oracle-skills-cli` via `Bunx` runtime for parallel node execution.</li>
+                        <li>Administered `/learn` subagents on repositories (`two-rivers-oracle`) generating static
+                            architecture documentations.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="cv-section">
+            <h3 class="section-title">Technical Skills</h3>
+            <div class="skills-grid">
+                <span class="skill-tag">HTML5/CSS3</span>
+                <span class="skill-tag">Vanilla JavaScript</span>
+                <span class="skill-tag">MQTT Protocol</span>
+                <span class="skill-tag">WebSockets</span>
+                <span class="skill-tag">React.js</span>
+                <span class="skill-tag">Node.js</span>
+                <span class="skill-tag">Bun Runtime</span>
+                <span class="skill-tag">Git Operations</span>
+                <span class="skill-tag">Cloudflare Pages</span>
+            </div>
+        </section>
+
+        <section class="cv-section">
+            <h3 class="section-title">Notable Deployments</h3>
+            <div class="timeline-item">
+                <div class="item-header">
+                    <div class="item-title">Oracle Race: Path of the Two Rivers</div>
+                    <div class="item-date">Production</div>
+                </div>
+                <div class="item-desc">
+                    <p>Designed a zero-backend multiplayer track racing game with local storage betting metrics ("Oracle
+                        Coins"). Utilized MQTT retained topics for a synchronized Hall of Fame leaderboard and real-time
+                        state pooling without a central server.</p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+</body>
+
+</html>
